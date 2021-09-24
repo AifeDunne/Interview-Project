@@ -38,7 +38,7 @@ class firstTest extends TestCase {
 		}
 	}
 	
-	private function outputResults($resultType) {
+	private function outputResults() {
 		if ($this->testType === "Report") {
 			$send_report = array_combine($this->label_array, $this->report_array);
 			print_r($send_report); 
@@ -51,7 +51,7 @@ class firstTest extends TestCase {
 		$this->testType = $testType;
 		if ( $this->testType === "Lucky" || $this->testType === "Report") { $this->label_array[] = "Lucky"; $this->report_array[] = 0; }
 		$this->checkData();
-		$this->outputResults($this->testType);
+		$this->outputResults();
 	}
 }
 

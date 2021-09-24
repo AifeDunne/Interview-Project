@@ -1,7 +1,6 @@
 <?php
 namespace fizzbuzz\Test;
 use PHPUnit\Framework\TestCase;
-error_reporting(E_ALL ^ (E_NOTICE | E_WARNING | E_DEPRECATED));
 
 class firstTest extends TestCase {
 	function __construct() {
@@ -17,15 +16,7 @@ class firstTest extends TestCase {
 		else if (is_int($addMore)) { for ($a = 1; $a <= $addMore; $a++) { $newArray[] = $a; } return $newArray; } 
 		else if ($addMore === "") { return array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20); } }
 		
-	private function outputResults($resultType) {
-		if ($this->testType === "Report") {
-			$send_report = array_combine($this->label_array, $this->report_array);
-			print_r($send_report); 
-		} else { echo $this->finalOutput; }
-	}
-		
 	private function checkData() {
-		if ( $this->testType === "Lucky" || $this->testType === "Report") { $this->label_array[] = "Lucky"; $this->report_array[] = 0; }
 		foreach($this->testData as $key => $data) {
 			$nCount = 0;
 			if ($this->testType === "Lucky" && strpos($data,"3") !== false || $this->testType === "Report" && strpos($data,"3") !== false) {
@@ -45,19 +36,28 @@ class firstTest extends TestCase {
 				}
 			if ($nCount === 0) { $this->finalOutput.= "Number, "; $this->report_array[3] = $this->report_array[3] + 1; } }
 		}
-		$this->outputResults($this->testType);
+	}
+	
+	private function outputResults($resultType) {
+		if ($this->testType === "Report") {
+			$send_report = array_combine($this->label_array, $this->report_array);
+			print_r($send_report); 
+		} else { echo $this->finalOutput; }
 	}
 	
 	public function runTest($testType, $customArray) {
 		$this->testData = $this->checkArray($customArray);
 		$testType = ucwords($testType);
 		$this->testType = $testType;
+		if ( $this->testType === "Lucky" || $this->testType === "Report") { $this->label_array[] = "Lucky"; $this->report_array[] = 0; }
 		$this->checkData();
+		$this->outputResults($this->testType);
 	}
 }
 
 // Function Argument 1: Test Type - Simple (Simple), Lucky (Lucky), Report (Report)
 // Function Argument 2: Array Type - User Supplied (Array), Generated (Number), Default (Default Array)
+
 $testClass = new firstTest();
 $testClass->runTest("Simple",20);
 ?>

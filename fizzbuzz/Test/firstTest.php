@@ -29,9 +29,8 @@ class firstTest extends TestCase {
 		foreach($this->testData as $key => $data) {
 			$nCount = 0;
 			if (strpos($data,"3") !== false && $this->testType === "Lucky" || strpos($data,"3") !== false && $this->testType === "Report") {
-				if ( $this->testType === "Lucky" || $this->testType === "Report") {
 				$this->report_array[4] = $this->report_array[4] + 1; 
-				$this->finalOutput.= "Lucky, "; }
+				$this->finalOutput.= "Lucky, ";
 			}
 			else {
 				for ($d = 0; $d < 3; $d++) {

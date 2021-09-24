@@ -27,21 +27,22 @@ class firstTest extends TestCase {
 	private function checkData() {
 		if ( $this->testType === "Lucky" || $this->testType === "Report") { $this->label_array[] = "Lucky"; $this->report_array[] = 0; }
 		foreach($this->testData as $key => $data) {
-		$nCount = 0;
-		if (strpos($data,"3") !== false && $this->testType === "Lucky" || strpos($data,"3") !== false && $this->testType === "Report") {
-			if ( $this->testType === "Lucky" || $this->testType === "Report") {
-			$this->report_array[4] = $this->report_array[4] + 1; 
-			$this->finalOutput.= "Lucky, "; }
-		}
-		else {
-			for ($d = 0; $d < 3; $d++) {
-				$math_part = intval($this->math_array[$d]);
-				if (($data % $math_part) == 0) { 
-					$nCount++; 
-					$attr_name = $this->label_array[$d]; 
-					$this->report_array[$d] = $this->report_array[$d] + 1; 
-					$this->finalOutput.= $attr_name.", "; 
-					if ($attr_name === "BuzzFizz") { break; } } 
+			$nCount = 0;
+			if (strpos($data,"3") !== false && $this->testType === "Lucky" || strpos($data,"3") !== false && $this->testType === "Report") {
+				if ( $this->testType === "Lucky" || $this->testType === "Report") {
+				$this->report_array[4] = $this->report_array[4] + 1; 
+				$this->finalOutput.= "Lucky, "; }
+			}
+			else {
+				for ($d = 0; $d < 3; $d++) {
+					$math_part = intval($this->math_array[$d]);
+					if (($data % $math_part) == 0) { 
+						$nCount++; 
+						$attr_name = $this->label_array[$d]; 
+						$this->report_array[$d] = $this->report_array[$d] + 1; 
+						$this->finalOutput.= $attr_name.", "; 
+						if ($attr_name === "BuzzFizz") { break; } 
+					} 
 				}
 			if ($nCount === 0) { $this->finalOutput.= "Number, "; $this->report_array[3] = $this->report_array[3] + 1; } }
 		}
@@ -56,8 +57,8 @@ class firstTest extends TestCase {
 	}
 }
 
-// Function Variable 1: Test Type - Simple (Simple), Lucky (Lucky), Report (Report)
-// Function Variable 2: Array Type - User Supplied (Array), Generated (Number), Default (Default Array)
+// Function Argument 1: Test Type - Simple (Simple), Lucky (Lucky), Report (Report)
+// Function Argument 2: Array Type - User Supplied (Array), Generated (Number), Default (Default Array)
 $testClass = new firstTest();
-$testClass->runTest("Report",20);
+$testClass->runTest("Simple",20);
 ?>
